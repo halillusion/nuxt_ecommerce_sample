@@ -1,0 +1,18 @@
+{
+  "name": "nuxt_ecommerce_test",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@nuxtjs/pwa": "^3.3.5",
+    "nuxt": "3.0.0-rc.11",
+    "sass": "^1.54.0",
+    "sass-loader": "10"
+  }
+}
