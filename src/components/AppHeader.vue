@@ -59,7 +59,7 @@
         </div>
       </div>
     </div>
-    <div class="navigation scrollbar" :class="mobileNavActive ? 'd-block' : 'd-none d-md-block'">
+    <div class="navigation scrollbar" :class="mobileNavActive ? 'active' : ''">
       <div class="container-xl">
         <div class="row g-0">
           <ul class="navbar-nav flex-md-row">
@@ -99,6 +99,7 @@
                 <li class="dropend">
                   <a class="dropdown-item dropdown-toggle" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" href="#">Level 3</a>
                   <ul class="dropdown-menu">
+                    <li><h6 class="dropdown-header">Level 3</h6></li>
                     <li><a class="dropdown-item" href="#">Kişisel Bakım</a></li>
                     <li><a class="dropdown-item" href="#">Enstrüman</a></li>
                   </ul>
