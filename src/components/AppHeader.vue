@@ -25,7 +25,7 @@
         <div class="row g-0">
           <div class="col-12 col-md-12 col-lg-3">
             <div class="mobile-supported">
-              <NuxtLink to="/" class="brand ms-lg-0 mx-auto"><img src="/img/logo.svg" alt="Logo"></NuxtLink>
+              <a href="/" class="brand ms-lg-0 mx-auto"><img src="/img/logo.svg" alt="Logo"></a>
               <button @click="mobileNav()" class="mobile-menu-trigger d-inline d-md-none" :class="mobileNavActive ? ' active' : ''">
                 <span></span>
                 <span></span>
@@ -50,8 +50,8 @@
               <a href="#" class="cart">
                 <i class="ti ti-shopping-cart"></i>
                 <span class="name">
-                  <strong>Sepet</strong>
-                  <span>0,00TL</span>
+                  <strong>Sepet <span v-if="cartProductTotal" class="text-muted">({{cartProductTotal}})</span></strong>
+                  <span>{{numberFormat.format(cartTotal)}}</span>
                 </span>
               </a>
             </div>
@@ -113,17 +113,59 @@
   </header>
 </template>
 <script>
+import { mapState, mapStores  } from 'pinia'
+import { cartStore } from '~/store/cart'
+
 export default {
   name: 'AppHeader',
   data() {
     return {
-      mobileNavActive: false
+      mobileNavActive: false,
+      numberFormat: new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY' }),
     }
   },
   methods: {
     mobileNav() {
       this.mobileNavActive = !this.mobileNavActive;
     }
+  },
+  computed: {
+    ...mapState(cartStore, ['cart']),
+    cartTotal() {
+      const cartList = Object.values(JSON.parse(JSON.stringify(this.cart)));
+      let total = 0;
+      if (cartList && cartList.length > 0) {
+        [...cartList].forEach(item => {
+          total += (item.price * item.qty);
+        });
+      }
+      return total;
+    },
+    cartProductTotal() {
+      const cartList = Object.values(JSON.parse(JSON.stringify(this.cart)));
+      let total = 0;
+      if (cartList && cartList.length > 0) {
+        [...cartList].forEach(item => {
+          total++;
+        });
+      }
+      return total;
+    }
+  },
+  created() {
+    this.cartStore = cartStore();
+  },
+  mounted() {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY >= 200) {
+        document.querySelector('.header').classList.add('scrolled');
+      } else {
+        document.querySelector('.header').classList.remove('scrolled');
+      }
+    });
+  },
+  unmounted() {
+    window.removeEventListener('scroll');
   }
 }
 </script>
