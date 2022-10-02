@@ -2,8 +2,10 @@
 export default defineNuxtConfig({
   srcDir: 'src/',
   publicRuntimeConfig: {
-    API_KEY: process.env.API_URL,
+    API_URL: process.env.API_URL,
     GUID: process.env.GUID,
+    API_USER: process.env.API_USER,
+    API_PASS: process.env.API_PASS
   },
   css: ["@/assets/styles/global.scss"],
   app: {
@@ -26,7 +28,15 @@ export default defineNuxtConfig({
       ],
     },
   },
-  buildModules: ["@nuxtjs/pwa"],
+  buildModules: [
+    "@nuxtjs/pwa",
+    "@pinia/nuxt"
+  ],
+  imports: {
+    dirs: ['store'],
+  },
+  modules: [
+  ],
   axios: {},
   pwa: {
     manifest: {
