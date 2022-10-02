@@ -138,7 +138,7 @@ export default {
   },
   async created() {
     if (this.authStore.token === null) {
-      const url = this.$route.path === '/' ? 'http://localhost:3000/' : this.$route.path;
+      const url = this.$route.path === '/' ? this.$config.BASE_URL : this.$route.path;
       const fetchToken = await fetch(url + 'api/token');
       const token = await fetchToken.json();
       if (token && token.status && token.data.token) {

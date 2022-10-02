@@ -5,6 +5,7 @@ export default defineNuxtConfig({
     API_URL: process.env.API_URL,
     GUID: process.env.GUID,
     API_USER: process.env.API_USER,
+    BASE_URL: process.env.BASE_URL,
     API_PASS: process.env.API_PASS
   },
   css: ["@/assets/styles/global.scss"],
