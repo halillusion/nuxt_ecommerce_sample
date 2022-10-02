@@ -5,7 +5,7 @@
         <div class="col-12">
           <ol class="breadcrumb">
             <li v-for="(item, key) in schema" :key="key" class="breadcrumb-item" :class="(key+1) === schema.length ? 'active' : ''">
-              <NuxtLink v-if="(key+1) !== schema.length" :to="item.link">{{item.name}}</NuxtLink>
+              <a v-if="(key+1) !== schema.length" :href="item.link">{{item.name}}</a>
               <strong v-else>{{item.name}}</strong>
             </li>
           </ol>
